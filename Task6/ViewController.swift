@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet private var numLabel: UILabel!
-    private var randomValue:Float = 0.0
+    private var randomValue: Float = 0.0
     override func viewDidLoad() {
         randomValue = Float(arc4random_uniform(100))
         numLabel.text = String(randomValue)
@@ -31,4 +31,3 @@ class ViewController: UIViewController {
 //        }
 //    }
 }
-
