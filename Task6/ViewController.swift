@@ -10,24 +10,26 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet private var numLabel: UILabel!
-    private var randomValue: Float = 0.0
+    private var randomValue = 0
     override func viewDidLoad() {
-        randomValue = Float(arc4random_uniform(100))
+        slider.setValue(50, animated: false)
+        randomValue = Int.random(in: 1...100)
         numLabel.text = String(randomValue)
     }
     @IBOutlet private var slider: UISlider!
-    
-//    private func alert(message:String) {
-//       let alert = UIAlertController(title: "課題６", message: message, preferredStyle: .alert)
-//
-//        alert.addAction("再挑戦" )
-//    }
-//    @IBAction private func judgementButton(_ sender: Any) {
-//        switch randomValue == slider.value {
-//        case true:
-//
-//        default:
-//            <#code#>
-//        }
-//    }
+
+    private func alert(message: String) {
+       let alert = UIAlertController(title: "結果", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "再挑戦", style: UIAlertAction.Style.default) { _ in
+            self.viewDidLoad()
+        })
+        present(alert, animated: true, completion: nil)
+    }
+    @IBAction private func judgementButton(_ sender: Any) {
+        if randomValue == Int(slider.value) {
+            alert(message: "あたり！\nあなたの値は:\(Int(slider.value))")
+        } else {
+            alert(message: "はずれ！\nあなたの値は:\(Int(slider.value))")
+        }
+    }
 }
